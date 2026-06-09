@@ -1,0 +1,24 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - ../../base
+
+# overwrite the APP_VERSION env var for the test overlay
+patches:
+  - target:
+      kind: Deployment
+      name: git-ops-init
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: git-ops-init
+      spec:
+        template:
+          spec:
+            containers:
+              - name: git-ops-init
+                env:
+                  - name: APP_VERSION
+                    value: "0.2.0"
