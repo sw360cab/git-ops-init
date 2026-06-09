@@ -10,7 +10,7 @@ spec:
     server: https://kubernetes.default.svc
   source:
     repoURL: https://github.com/sw360cab/git-ops-init.git
-    path: infra/deploy
+    path: infra/kustomize/overlays/test
     targetRevision: master
   syncPolicy:
     automated:
