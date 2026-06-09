@@ -18,13 +18,17 @@ docker push sw360cab/git-ops-init:0.1.0
 
 ```sh
 kubectl create namespace argocd
-kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+kubectl apply --server-side -n argocd \
+  -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+
 ```
+
+**Note:** `--server-side` is required. the `applicationsets.argoproj.io` CRD exceeds the 256 KB annotation limit used by client-side `kubectl apply`. See [the official docs](https://argo-cd.readthedocs.io/en/stable/getting_started)
 
 ### Deploy ArgoCD Application
 
 ```sh
-kubectl apply -f argocd gitops-app.yaml
+kubectl apply -f infra/gitops/argocd/gitops-app.yaml
 ```
 
 ### Web UI
