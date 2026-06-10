@@ -3,6 +3,10 @@ kind: Application
 metadata:
   name: gitops-init-argocd
   namespace: argocd
+  annotations:
+    argocd-image-updater.argoproj.io/image-list: app=sw360cab/git-ops-init
+    argocd-image-updater.argoproj.io/app.update-strategy: semver
+    # write-back-method omitted - defaults to "argocd" (cluster only)
 spec:
   project: default
   destination:
