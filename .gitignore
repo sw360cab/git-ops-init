@@ -3,3 +3,6 @@
 *private*.pem
 out/
 out.yaml
+
+# istio git folder
+istio-[0-9].*/
