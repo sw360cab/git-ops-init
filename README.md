@@ -2,9 +2,6 @@
 
 Basic setup to test GitOps with ArgoCD.
 
-**Note: This repo is private, it must be set to public to play with GitOps/ArgoCD features,
-or either made accessible via a private repository access mechanism**
-
 ## Docker Image
 
 - Build and push a basic image onto Docker Hub Image registry
