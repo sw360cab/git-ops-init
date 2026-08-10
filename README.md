@@ -32,7 +32,7 @@ kubectl apply -f infra/gitops/argocd/gitops-app.yaml
 
 ### Web UI
 
-Accessing UI is possible by installing the `argocd CLI` or  by directly using port-forward of `argocd-server` UI
+Accessing UI is possible by installing the `argocd CLI` or by directly using port-forward of `argocd-server` UI
 
 ```sh
 kubectl -n argocd port-forward svc/argocd-server 8080:443

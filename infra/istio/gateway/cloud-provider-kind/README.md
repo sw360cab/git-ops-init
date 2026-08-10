@@ -11,7 +11,7 @@ kubectl apply -f infra/istio/gateway/cloud-provider-kind
 - Getting Gateway address
 
 ```sh
-GW_ADDR=$(kubectl get gateway -n gateway-infra gateway -o jsonpath='{.items[0].status.addresses[0].value}')
+GW_ADDR=$(kubectl get gateway -n default git-ops-gw -o jsonpath='{.status.addresses[0].value}')
 ```
 
 - Test via cURL resolving domain

@@ -18,7 +18,7 @@ spec:
   source:
     repoURL: https://github.com/sw360cab/git-ops-init.git
     path: infra/kustomize/overlays/test
-    targetRevision: master
+    targetRevision: canary-demo
   syncPolicy:
     automated:
       prune: true
