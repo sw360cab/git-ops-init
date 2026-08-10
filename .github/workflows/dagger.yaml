@@ -1,4 +1,4 @@
-name: dagger
+name: Push using Dagger CI
 on:
   push:
     tags:
@@ -27,6 +27,9 @@ jobs:
           path: ci/daggerverse/build-push
       - name: Build And Push on DockerHub
         uses: dagger/dagger-for-github@v8.4.0
+        env:
+          DOCKER_REGISTRY_USERNAME: ${{ secrets.DOCKER_REGISTRY_USERNAME }}
+          DOCKER_REGISTRY_TOKEN: ${{ secrets.DOCKER_REGISTRY_TOKEN }}
         with:
           version: ${{ steps.dagger_version.outputs.version }}
           module: ci/daggerverse/build-push
@@ -34,6 +37,6 @@ jobs:
             build-and-push --build-context app \
             --registry-endpoint docker.io \
             --image-name sw360cab/git-ops-init \
-            --username ${{ secrets.DOCKER_REGISTRY_USERNAME }} \
-            --token ${{ secrets.DOCKER_REGISTRY_TOKEN }} \
+            --username ${ DOCKER_REGISTRY_USERNAME } \
+            --token env://DOCKER_REGISTRY_TOKEN \
             --tag ${{ inputs.tag || github.ref_name }}
