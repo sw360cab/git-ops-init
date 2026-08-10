@@ -37,6 +37,6 @@ jobs:
             build-and-push --build-context app \
             --registry-endpoint docker.io \
             --image-name sw360cab/git-ops-init \
-            --username ${ DOCKER_REGISTRY_USERNAME } \
+            --username sw360cab \
             --token env://DOCKER_REGISTRY_TOKEN \
             --tag ${{ inputs.tag || github.ref_name }}
