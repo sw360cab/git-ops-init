@@ -2,6 +2,7 @@ name: dagger
 on:
   push:
     tags:
+      - '[0-9]+.[0-9]+.[0-9]+'
   workflow_dispatch:
     inputs:
       tag:
@@ -30,7 +31,7 @@ jobs:
           version: ${{ steps.dagger_version.outputs.version }}
           module: ci/daggerverse/build-push
           call: |
-            build-and-push--build-context app \
+            build-and-push --build-context app \
             --registry-endpoint docker.io \
             --image-name sw360cab/git-ops-init \
             --username ${{ secrets.DOCKER_REGISTRY_USERNAME }} \
