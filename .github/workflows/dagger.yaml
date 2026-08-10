@@ -36,4 +36,4 @@ jobs:
             --image-name sw360cab/git-ops-init \
             --username ${{ secrets.DOCKER_REGISTRY_USERNAME }} \
             --token ${{ secrets.DOCKER_REGISTRY_TOKEN }} \
-            --tag ${{ inputs.tag }}
+            --tag ${{ inputs.tag || github.ref_name }}
