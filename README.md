@@ -28,7 +28,6 @@ kubectl apply --server-side -n argocd \
 
 ```sh
 kubectl apply -f infra/gitops/argocd/gitops-app.yaml
-# kubectl apply -f infra/gitops/argocd/image-updater.yaml
 ```
 
 ### Web UI
@@ -47,6 +46,7 @@ kubectl -n argocd port-forward svc/argocd-server 8080:443
 ```sh
 kubectl apply -n argocd \
   -f https://raw.githubusercontent.com/argoproj-labs/argocd-image-updater/stable/config/install.yaml
+kubectl apply -f infra/gitops/argocd/image-updater.yaml
 ```
 
 ## Kind Cluster

@@ -3,7 +3,8 @@
 - Install `istioctl`, see [Istio Docs](https://istio.io/latest/docs/setup/getting-started/#download), using the demo profile, without any gateways:
 
 ```sh
-bin/istioctl install -f samples/bookinfo/demo-profile-no-gateways.yaml -y
+cd <istio_download_folder>
+bin/istioctl install -f ../profile-no-gateway/demo-profile-no-gateways.yaml -y
 ```
 
 - Install Gateway API CRDs (if missing)
@@ -28,7 +29,7 @@ kubectl apply -f infra/istio/gateway/istio-gw
 - Test Service
 
 ```sh
-export INGRESS_HOST=$(kubectl get gtw git-ops-istio  -o jsonpath='{.status.addresses[0].value}')
+export INGRESS_HOST=$(kubectl get gtw git-ops-istio -o jsonpath='{.status.addresses[0].value}')
 export INGRESS_PORT=$(kubectl get gtw git-ops-istio -o jsonpath='{.spec.listeners[?(@.protocol=="HTTP")].port}')
 curl -s "http://${INGRESS_HOST}:${INGRESS_PORT}"
 ```

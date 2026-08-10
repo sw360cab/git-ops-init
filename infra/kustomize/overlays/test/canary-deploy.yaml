@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: git-ops-init-canary
+  labels:
+    app: git-ops-init-canary
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: git-ops-init-canary
+  template:
+    metadata:
+      labels:
+        app: git-ops-init-canary
+    spec:
+      containers:
+        - name: git-ops-init
+          image: git-ops-init-canary-image
+          ports:
+            - containerPort: 8080
+          env:
+            - name: PORT
+              value: "8080"
+            - name: APP_VERSION
+              value: "0.2.0-canary"
