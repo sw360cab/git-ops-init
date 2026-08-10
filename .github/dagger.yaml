@@ -1,0 +1,38 @@
+name: dagger
+on:
+  push:
+    tags:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Tag to build (e.g. 0.1.1)"
+        required: true
+
+jobs:
+
+  build-push:
+    name: build-push-ci
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ inputs.tag || github.ref }}
+          persist-credentials: false
+      - name: Get Dagger version
+        id: dagger_version
+        uses: sagikazarmark/dagger-version-action@v0.0.2
+        with:
+          path: ci/daggerverse/build-push
+      - name: Build And Push on DockerHub
+        uses: dagger/dagger-for-github@v8.4.0
+        with:
+          version: ${{ steps.dagger_version.outputs.version }}
+          module: ci/daggerverse/build-push
+          call: |
+            build-and-push--build-context app \
+            --registry-endpoint docker.io \
+            --image-name sw360cab/git-ops-init \
+            --username ${{ secrets.DOCKER_REGISTRY_USERNAME }} \
+            --token ${{ secrets.DOCKER_REGISTRY_TOKEN }} \
+            --tag ${{ inputs.tag }}

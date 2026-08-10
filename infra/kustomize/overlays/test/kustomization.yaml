@@ -3,6 +3,8 @@ kind: Kustomization
 
 resources:
   - ../../base
+  - canary-deploy.yaml
+  - canary-svc.yaml
 
 # overwrite the APP_VERSION env var for the test overlay
 patches:
@@ -22,3 +24,10 @@ patches:
                 env:
                   - name: APP_VERSION
                     value: "0.2.0-kustomize"
+
+# resolves the canary Deployment's placeholder image; Image Updater rewrites
+# newTag here only, leaving the stable Deployment's pinned image untouched
+images:
+  - name: git-ops-init-canary-image
+    newName: sw360cab/git-ops-init
+    newTag: 0.1.0

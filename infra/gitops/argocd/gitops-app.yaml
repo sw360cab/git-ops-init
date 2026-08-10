@@ -4,8 +4,11 @@ metadata:
   name: gitops-init-argocd
   namespace: argocd
   annotations:
-    argocd-image-updater.argoproj.io/image-list: app=sw360cab/git-ops-init
-    argocd-image-updater.argoproj.io/app.update-strategy: semver
+    argocd-image-updater.argoproj.io/image-list: canary=sw360cab/git-ops-init
+    argocd-image-updater.argoproj.io/canary.update-strategy: semver
+    # only the canary Deployment's placeholder image is targeted; the stable
+    # Deployment's pinned image is untouched by Image Updater
+    argocd-image-updater.argoproj.io/canary.kustomize.image-name: git-ops-init-canary-image
     # write-back-method omitted - defaults to "argocd" (cluster only)
 spec:
   project: default
