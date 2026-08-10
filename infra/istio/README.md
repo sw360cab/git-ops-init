@@ -28,7 +28,7 @@ kubectl apply -f infra/istio/gateway/istio-gw
 - Test Service
 
 ```sh
-export INGRESS_HOST=$(kubectl get gtw git-ops-istio  -o jsonpath='{.status.addresses[0].value}')
+export INGRESS_HOST=$(kubectl get gtw git-ops-istio -o jsonpath='{.status.addresses[0].value}')
 export INGRESS_PORT=$(kubectl get gtw git-ops-istio -o jsonpath='{.spec.listeners[?(@.protocol=="HTTP")].port}')
 curl -s "http://${INGRESS_HOST}:${INGRESS_PORT}"
 ```
