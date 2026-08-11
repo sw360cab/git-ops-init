@@ -10,7 +10,7 @@ spec:
   - backendRefs:
     - name: git-ops-init
       port: 80
-    #   weight: 70
-    # - name: git-ops-init-canary
-    #   port: 80
-    #   weight: 30
+      weight: 70
+    - name: git-ops-init-canary
+      port: 80
+      weight: 30

@@ -11,7 +11,7 @@ func main() {
 	version := os.Getenv("APP_VERSION")
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "hello from GitOps Go with Image updater, version: %s", version)
+		fmt.Fprintf(w, "hello from GitOps Go with ArgoCD, version: %s", version)
 	})
 
 	port := os.Getenv("PORT")
